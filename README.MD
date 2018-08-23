@@ -10,13 +10,13 @@ A calendar component which allows users to select and reserve avaiblable timeslo
 
 ## Installation
 ```
-npm install --save react-timeslot-calendar
+npm install --save react-timeslot-calendar-k
 ```
 
 ## Usage:
 ```js
 import moment from 'moment';
-import ReactTimeslotCalendar from 'react-timeslot-calendar';
+import ReactTimeslotCalendar from 'react-timeslot-calendar-k';
 
 ...
 render() {
