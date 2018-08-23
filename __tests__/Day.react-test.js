@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import sinon from 'sinon';
 import moment from 'moment';
-import {
+import Enzyme , {
   shallow,
   mount,
 } from 'enzyme';
@@ -13,6 +13,9 @@ import {
   DEFAULT_TIMESLOT_FORMAT,
   DEFAULT_TIMESLOT_SHOW_FORMAT,
 } from '../src/js/constants/day';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Render tests', () => {
   test('Renders Correctly with min props.', () => {

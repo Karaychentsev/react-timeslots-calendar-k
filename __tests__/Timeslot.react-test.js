@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import sinon from 'sinon';
 import Timeslot from '../src/js/components/timeslot';
-import {
+import Enzyme, {
   shallow,
   mount,
 } from 'enzyme';
@@ -14,6 +14,9 @@ import {
 } from '../src/js/constants/timeslot';
 
 import { DEFAULT_TIMESLOTS } from '../src/js/constants/day';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 
 it('Renders Correctly with All props.', () => {

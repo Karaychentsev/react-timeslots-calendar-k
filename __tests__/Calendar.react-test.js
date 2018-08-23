@@ -2,13 +2,16 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import sinon from 'sinon';
 import moment from 'moment';
-import {
+import Enzyme, {
   mount,
   shallow,
 } from 'enzyme';
 import Calendar from '../src/js/components/calendar';
 import Timeslot from '../src/js/components/timeslot';
 import { DEFAULT_TIMESLOTS } from '../src/js/constants/day';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Render tests', () => {
   test('Renders Correctly.', () => {
