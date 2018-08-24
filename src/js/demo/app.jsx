@@ -33,10 +33,14 @@ export default class App extends React.Component {
         <ReactTimeslotCalendar
           initialDate = { this.initialDate.format() }
           timeslots = { [
-            ['9', '10'],
-            ['10', '11'],
-            ['18'],
+            ['09:00', '10:20'],
+            ['10:30', '11:40'],
+            ['18:23'],
           ] }
+          timeslotProps = {{
+            format: 'HH:mm',
+            showFormat: 'HH:mm',
+          }}
           maxTimeslots = { 3 }
           onSelectTimeslot = { (timeslots, lastSelected) => {
             console.log('All Timeslots:');

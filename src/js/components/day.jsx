@@ -53,6 +53,7 @@ export default class Day extends React.Component {
       initialDate,
     } = this.props;
 
+
     return timeslots.map((slot, index) => {
       let description = '';
       for (let i = 0; i < slot.length; i ++){
@@ -61,9 +62,14 @@ export default class Day extends React.Component {
           description += ' - ';
         }
       }
+      // let timeslotDates = {
+      //   startDate: momentTime.clone().add(slot[0], timeslotProps.format),
+      //   endDate: momentTime.clone().add(slot[slot.length - 1], timeslotProps.format),
+      // };
+
       let timeslotDates = {
-        startDate: momentTime.clone().add(slot[0], timeslotProps.format),
-        endDate: momentTime.clone().add(slot[slot.length - 1], timeslotProps.format),
+        startDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(slot[0], timeslotProps.format).format("HH:mm:ss")}`),
+        endDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(slot[slot.length - 1], timeslotProps.format).format("HH:mm:ss")}`),
       };
 
       let status = DEFAULT;
@@ -102,15 +108,20 @@ export default class Day extends React.Component {
   _onTimeslotClick(index) {
     const {
       timeslots,
-      timeslotFormat,
+      timeslotProps,
       momentTime,
       onTimeslotClick,
     } = this.props;
 
+    // const timeslot = {
+    //   startDate: momentTime.clone().add(timeslots[index][0], timeslotFormat),
+    //   endDate: momentTime.clone().add(timeslots[index][1], timeslotFormat),
+    // };
     const timeslot = {
-      startDate: momentTime.clone().add(timeslots[index][0], timeslotFormat),
-      endDate: momentTime.clone().add(timeslots[index][1], timeslotFormat),
+      startDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(timeslots[index][0], timeslotProps.format).format("HH:mm:ss")}`),
+      endDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(timeslots[index][1], timeslotProps.format).format("HH:mm:ss")}`),
     };
+    
 
     onTimeslotClick(timeslot);
   }

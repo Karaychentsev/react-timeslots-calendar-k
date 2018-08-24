@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "calendarjs": "^0.1.0",
-    "moment": "^2.18.1"
+    "moment": "^2.22.2"
   },
   "peerDependencies": {
     "react": "^15.5.4"
