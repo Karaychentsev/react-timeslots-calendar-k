@@ -17,10 +17,11 @@ export default class Week extends React.Component {
     const {
       weekToRender,
       initialDate,
+      finalDate,
       timeslots,
       timeslotProps,
       selectedTimeslots,
-      disabledTimeslots,
+      enabledTimeslots,
       renderDays,
     } = this.props;
 
@@ -32,11 +33,12 @@ export default class Week extends React.Component {
           <Day
             key = { index }
             onTimeslotClick = { this._onTimeslotClick.bind(this) }
+            finalDate = { finalDate }
             initialDate = { initialDate }
             timeslots = { timeslots }
             timeslotProps = { timeslotProps }
             selectedTimeslots = { selectedTimeslots }
-            disabledTimeslots = { disabledTimeslots }
+            enabledTimeslots = { enabledTimeslots }
             momentTime = { formattedDate }
             />
         );
@@ -67,9 +69,10 @@ Week.propTypes = {
   weekToRender: PropTypes.array.isRequired,
   onTimeslotClick: PropTypes.func.isRequired,
   initialDate: PropTypes.object.isRequired,
+  finalDate: PropTypes.object.isRequired,
   timeslots : PropTypes.array.isRequired,
   timeslotProps: PropTypes.object,
   selectedTimeslots: PropTypes.array,
-  disabledTimeslots: PropTypes.array,
+  enabledTimeslots: PropTypes.array,
   renderDays: PropTypes.object,
 };

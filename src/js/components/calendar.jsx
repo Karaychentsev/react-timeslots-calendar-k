@@ -60,6 +60,7 @@ export default class Calendar extends React.Component {
     const {
       timeslots,
       initialDate,
+      finalDate,
     } = this.props;
 
     const cal = new CalendarJS(currentDate.year(), currentDate.month() + 1);
@@ -69,13 +70,14 @@ export default class Calendar extends React.Component {
       <Month
         currentDate = { currentDate }
         initialDate = { moment(initialDate) }
+        finalDate = { moment(finalDate) }
         weeks = { weeks }
         onWeekOutOfMonth = { this._onWeekOutOfMonth.bind(this) }
         onTimeslotClick = { this._onTimeslotClick.bind(this) }
         timeslots = { timeslots }
         timeslotProps = { this.timeslotProps }
         selectedTimeslots = { selectedTimeslots }
-        disabledTimeslots = { this._formatDisabledTimeslots() }
+        enabledTimeslots = { this._formatEnabledTimeslots() }
         renderDays = { this.renderDays }
       />
     );
@@ -152,12 +154,12 @@ export default class Calendar extends React.Component {
     });
   }
 
-  _formatDisabledTimeslots() {
+  _formatEnabledTimeslots() {
     const {
-      disabledTimeslots,
+      enabledTimeslots,
     } = this.props;
 
-    return disabledTimeslots.map((timeslot) => {
+    return enabledTimeslots.map((timeslot) => {
       let timeslotMoment = Object.assign({}, timeslot);
       timeslotMoment.startDate = moment(timeslotMoment.startDate, timeslotMoment.format);
       timeslotMoment.endDate = moment(timeslotMoment.endDate, timeslotMoment.format);
@@ -256,7 +258,7 @@ export default class Calendar extends React.Component {
 }
 
 Calendar.defaultProps = {
-  disabledTimeslots: [],
+  enabledTimeslots: [],
   maxTimeslots: 1,
   inputProps: {
     names: {},
@@ -278,10 +280,11 @@ Calendar.defaultProps = {
  */
 Calendar.propTypes = {
   initialDate: PropTypes.string.isRequired,
+  finalDate: PropTypes.string.isRequired,
   timeslots: PropTypes.array.isRequired,
   timeslotProps: PropTypes.object,
   selectedTimeslots: PropTypes.array,
-  disabledTimeslots: PropTypes.array,
+  enabledTimeslots: PropTypes.array,
   maxTimeslots: PropTypes.number,
   renderDays: PropTypes.object,
   startDateInputProps: PropTypes.object,

@@ -38,10 +38,11 @@ ReactTimeslotCalendar.defaultProps = {
  */
 ReactTimeslotCalendar.propTypes = {
   initialDate: PropTypes.string.isRequired,
+  finalDate: PropTypes.string.isRequired,
   timeslots: PropTypes.array.isRequired,
   timeslotProps: PropTypes.object,
   selectedTimeslots: PropTypes.array,
-  disabledTimeslots: PropTypes.array,
+  enabledTimeslots: PropTypes.array,
   maxTimeslots: PropTypes.number,
   renderDays: PropTypes.object,
   startDateInputProps: PropTypes.object,

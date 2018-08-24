@@ -48,9 +48,10 @@ export default class Day extends React.Component {
       timeslots,
       timeslotProps,
       selectedTimeslots,
-      disabledTimeslots,
+      enabledTimeslots,
       momentTime,
       initialDate,
+      finalDate,
     } = this.props;
 
 
@@ -72,22 +73,27 @@ export default class Day extends React.Component {
         endDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(slot[slot.length - 1], timeslotProps.format).format('HH:mm:ss')}`),
       };
 
-      let status = DEFAULT;
-      if (timeslotDates.startDate.isBefore(initialDate) || timeslotDates.startDate.isSame(initialDate)) {
+      let status = DISABLED;
+      if (timeslotDates.startDate.isBefore(initialDate) || timeslotDates.startDate.isSame(initialDate) || (finalDate && timeslotDates.startDate.isSameOrAfter(finalDate))) {
         status = DISABLED;
       }
+
 
       const isSelected = selectedTimeslots.some((selectedTimeslot) => {
         return timeslotDates.startDate.format() === selectedTimeslot.startDate.format();
       });
 
-      const isDisabled = disabledTimeslots.some((disabledTimeslot) => {
-        return disabledTimeslot.startDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '[)') ||
-               disabledTimeslot.endDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '(]');
+      // const isDisabled = disabledTimeslots.some((disabledTimeslot) => {
+      //   return disabledTimeslot.startDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '[)') ||
+      //          disabledTimeslot.endDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '(]');
+      // });
+
+      const isEnabled = enabledTimeslots.some((enabledTimeslot) => {
+        return enabledTimeslot.startDate.isSame(timeslotDates.startDate);
       });
 
-      if (isDisabled) {
-        status = DISABLED;
+      if (isEnabled) {
+        status = DEFAULT;
       }
       else if (isSelected) {
         status = SELECTED;
@@ -151,11 +157,12 @@ Day.propTypes = {
   timeslots: PropTypes.array.isRequired,
   timeslotProps: PropTypes.object,
   selectedTimeslots: PropTypes.array,
-  disabledTimeslots: PropTypes.array,
+  enabledTimeslots: PropTypes.array,
   timeslotFormat: PropTypes.string.isRequired,
   timeslotShowFormat: PropTypes.string.isRequired,
   onTimeslotClick: PropTypes.func.isRequired,
   renderTitle: PropTypes.func.isRequired,
   momentTime: PropTypes.object.isRequired,
   initialDate: PropTypes.object.isRequired,
+  finalDate: PropTypes.object.isRequired,
 };

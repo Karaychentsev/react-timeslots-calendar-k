@@ -14,6 +14,7 @@ export default class App extends React.Component {
     super(props);
 
     this.initialDate = moment([2017, 3, 24]);
+    this.finalDate = moment([2017, 3, 28]);
 
   }
   render() {
@@ -32,6 +33,7 @@ export default class App extends React.Component {
         <MarkdownSnippet snippet = { customTimeslotSnippet }/>
         <ReactTimeslotCalendar
           initialDate = { this.initialDate.format() }
+          finalDate = { this.finalDate.format() }
           timeslots = { [
             ['09:00', '10:20'],
             ['10:30', '11:40'],
