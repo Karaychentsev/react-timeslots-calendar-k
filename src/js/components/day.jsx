@@ -68,8 +68,8 @@ export default class Day extends React.Component {
       // };
 
       let timeslotDates = {
-        startDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(slot[0], timeslotProps.format).format("HH:mm:ss")}`),
-        endDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(slot[slot.length - 1], timeslotProps.format).format("HH:mm:ss")}`),
+        startDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(slot[0], timeslotProps.format).format('HH:mm:ss')}`),
+        endDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(slot[slot.length - 1], timeslotProps.format).format('HH:mm:ss')}`),
       };
 
       let status = DEFAULT;
@@ -118,8 +118,8 @@ export default class Day extends React.Component {
     //   endDate: momentTime.clone().add(timeslots[index][1], timeslotFormat),
     // };
     const timeslot = {
-      startDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(timeslots[index][0], timeslotProps.format).format("HH:mm:ss")}`),
-      endDate: moment(`${momentTime.clone().format("YYYY-MM-DD")}T${moment(timeslots[index][1], timeslotProps.format).format("HH:mm:ss")}`),
+      startDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(timeslots[index][0], timeslotProps.format).format('HH:mm:ss')}`),
+      endDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(timeslots[index][1], timeslotProps.format).format('HH:mm:ss')}`),
     };
     
 

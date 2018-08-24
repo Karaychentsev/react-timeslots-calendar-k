@@ -37,10 +37,10 @@ export default class App extends React.Component {
             ['10:30', '11:40'],
             ['18:23'],
           ] }
-          timeslotProps = {{
+          timeslotProps = { {
             format: 'HH:mm',
             showFormat: 'HH:mm',
-          }}
+          } }
           maxTimeslots = { 3 }
           onSelectTimeslot = { (timeslots, lastSelected) => {
             console.log('All Timeslots:');
