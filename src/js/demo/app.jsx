@@ -43,7 +43,22 @@ export default class App extends React.Component {
             format: 'HH:mm',
             showFormat: 'HH:mm',
           } }
-          maxTimeslots = { 3 }
+          renderDisabled = { true }
+          enabledTimeslots = { [
+            {
+              startDate: 'April 30th 2017, 9:00:00',
+              format: 'MMMM Do YYYY, HH:mm:ss',
+            },
+            {
+              startDate: 'May 1st 2017, 9:00:00',
+              format: 'MMMM Do YYYY, HH:mm:ss',
+            },
+            {
+              startDate: 'May 5th 2017, 9:00:00',
+              format: 'MMMM Do YYYY, HH:mm:ss',
+            },
+          ] }
+          maxTimeslots = { 1 }
           onSelectTimeslot = { (timeslots, lastSelected) => {
             console.log('All Timeslots:');
             console.log(timeslots);

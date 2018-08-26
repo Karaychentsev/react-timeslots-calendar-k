@@ -84,11 +84,14 @@ export default class Month extends React.Component {
       selectedTimeslots,
       enabledTimeslots,
       renderDays,
+      currentDate,
+      renderDisabled,
     } = this.props;
 
     return (
       <Week
         weekToRender = { weeks[currentWeekIndex] }
+        currentDate = { currentDate }
         onTimeslotClick = { this._onTimeslotClick.bind(this) }
         initialDate = { initialDate }
         finalDate = { finalDate }
@@ -97,6 +100,7 @@ export default class Month extends React.Component {
         selectedTimeslots = { selectedTimeslots }
         enabledTimeslots = { enabledTimeslots }
         renderDays = { renderDays }
+        renderDisabled = { renderDisabled }
       />
     );
   }
@@ -190,4 +194,5 @@ Month.propTypes = {
   selectedTimeslots: PropTypes.array,
   enabledTimeslots: PropTypes.array,
   renderDays: PropTypes.object,
+  renderDisabled: PropTypes.bool,
 };

@@ -23,6 +23,8 @@ export default class Week extends React.Component {
       selectedTimeslots,
       enabledTimeslots,
       renderDays,
+      currentDate,
+      renderDisabled,
     } = this.props;
 
     return weekToRender.map((day, index) => {
@@ -32,6 +34,7 @@ export default class Week extends React.Component {
         return (
           <Day
             key = { index }
+            currentDate = { currentDate }
             onTimeslotClick = { this._onTimeslotClick.bind(this) }
             finalDate = { finalDate }
             initialDate = { initialDate }
@@ -40,6 +43,7 @@ export default class Week extends React.Component {
             selectedTimeslots = { selectedTimeslots }
             enabledTimeslots = { enabledTimeslots }
             momentTime = { formattedDate }
+            renderDisabled = { renderDisabled }
             />
         );
       }
@@ -66,6 +70,7 @@ export default class Week extends React.Component {
  * @type {Object} renderDays: An array of days which states which days of the week to render. By default renders all days.
  */
 Week.propTypes = {
+  currentDate: PropTypes.object,
   weekToRender: PropTypes.array.isRequired,
   onTimeslotClick: PropTypes.func.isRequired,
   initialDate: PropTypes.object.isRequired,
@@ -75,4 +80,5 @@ Week.propTypes = {
   selectedTimeslots: PropTypes.array,
   enabledTimeslots: PropTypes.array,
   renderDays: PropTypes.object,
+  renderDisabled: PropTypes.bool,
 };

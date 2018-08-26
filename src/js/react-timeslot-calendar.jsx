@@ -48,4 +48,5 @@ ReactTimeslotCalendar.propTypes = {
   startDateInputProps: PropTypes.object,
   endDateInputProps: PropTypes.object,
   onSelectTimeslot: PropTypes.func,
+  renderDisabled: PropTypes.bool,
 };

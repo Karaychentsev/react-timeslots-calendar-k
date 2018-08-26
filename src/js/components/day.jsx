@@ -52,6 +52,7 @@ export default class Day extends React.Component {
       momentTime,
       initialDate,
       finalDate,
+      renderDisabled,
     } = this.props;
 
 
@@ -95,7 +96,8 @@ export default class Day extends React.Component {
       if (isEnabled) {
         status = DEFAULT;
       }
-      else if (isSelected) {
+
+      if (isSelected) {
         status = SELECTED;
       }
 
@@ -106,6 +108,7 @@ export default class Day extends React.Component {
           description = { description }
           onClick = { this._onTimeslotClick.bind(this, index) }
           status = { status }
+          renderDisabled = { renderDisabled }
         />
       );
     });
@@ -117,6 +120,7 @@ export default class Day extends React.Component {
       timeslotProps,
       momentTime,
       onTimeslotClick,
+      currentDate,
     } = this.props;
 
     // const timeslot = {
@@ -124,6 +128,7 @@ export default class Day extends React.Component {
     //   endDate: momentTime.clone().add(timeslots[index][1], timeslotFormat),
     // };
     const timeslot = {
+      currentShowingDate: currentDate,
       startDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(timeslots[index][0], timeslotProps.format).format('HH:mm:ss')}`),
       endDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(timeslots[index][1], timeslotProps.format).format('HH:mm:ss')}`),
     };
@@ -154,6 +159,7 @@ Day.defaultProps = {
  * @type {Ojbect} initialDate: Moment JS Date used to initialize the Calendar and which progresses further into the tree.
  */
 Day.propTypes = {
+  currentDate: PropTypes.object,
   timeslots: PropTypes.array.isRequired,
   timeslotProps: PropTypes.object,
   selectedTimeslots: PropTypes.array,
@@ -165,4 +171,5 @@ Day.propTypes = {
   momentTime: PropTypes.object.isRequired,
   initialDate: PropTypes.object.isRequired,
   finalDate: PropTypes.object.isRequired,
+  renderDisabled: PropTypes.bool,
 };

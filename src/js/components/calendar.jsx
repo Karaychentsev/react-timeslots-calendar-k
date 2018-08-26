@@ -61,6 +61,7 @@ export default class Calendar extends React.Component {
       timeslots,
       initialDate,
       finalDate,
+      renderDisabled,
     } = this.props;
 
     const cal = new CalendarJS(currentDate.year(), currentDate.month() + 1);
@@ -79,6 +80,7 @@ export default class Calendar extends React.Component {
         selectedTimeslots = { selectedTimeslots }
         enabledTimeslots = { this._formatEnabledTimeslots() }
         renderDays = { this.renderDays }
+        renderDisabled = { renderDisabled }
       />
     );
   }
@@ -279,6 +281,7 @@ Calendar.defaultProps = {
  * @type {Object} endDateInputProps: properties for the endDate Inputs. Includes name, class, type (hidden, text...)
  */
 Calendar.propTypes = {
+  currentDate: PropTypes.string,
   initialDate: PropTypes.string.isRequired,
   finalDate: PropTypes.string.isRequired,
   timeslots: PropTypes.array.isRequired,
@@ -290,4 +293,5 @@ Calendar.propTypes = {
   startDateInputProps: PropTypes.object,
   endDateInputProps: PropTypes.object,
   onSelectTimeslot: PropTypes.func,
+  renderDisabled: PropTypes.bool,
 };

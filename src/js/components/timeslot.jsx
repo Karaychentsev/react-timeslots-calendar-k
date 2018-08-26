@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -14,6 +14,7 @@ export default class Timeslot extends React.Component {
       description,
       status,
       customClassNames,
+      renderDisabled,
     } = this.props;
 
     const timeslotClassNames = classnames({
@@ -22,11 +23,18 @@ export default class Timeslot extends React.Component {
       'tsc-timeslot--disabled': status == DISABLED,
     }, customClassNames);
 
-    return (
-      <div className = { timeslotClassNames } onClick = { this._onTimeslotClick.bind(this) }>
-        { description }
-      </div>
-    );
+    if (status !== DISABLED || renderDisabled) {
+      return (
+        <div className = { timeslotClassNames } onClick = { this._onTimeslotClick.bind(this) }>
+          { description }
+        </div>
+      );
+    }
+    else {
+      return (
+        <Fragment / >
+      );
+    }
   }
 
   _onTimeslotClick(event) {
@@ -52,6 +60,7 @@ Timeslot.defaultProps = {
  * @type (Function) onClick: Function to be excecuted when clicked.
  */
 Timeslot.propTypes = {
+  renderDisabled: PropTypes.bool,
   description: PropTypes.string.isRequired,
   status: PropTypes.oneOf([
     DEFAULT,
