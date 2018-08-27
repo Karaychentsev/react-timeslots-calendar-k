@@ -260,7 +260,7 @@ export default class Calendar extends React.Component {
     this._updateTimeslotProps(nextProps.timeslotProps);
     this._updateRenderDays(nextProps.renderDays);
     if (this.props.selectedTimeslots !== nextProps.selectedTimeslots) {
-      this.setState({selectedTimeslots: nextProps.selectedTimeslots});
+      this.setState({selectedTimeslots: nextProps.selectedTimeslots || []});
     }
   }
 
