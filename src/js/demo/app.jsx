@@ -43,7 +43,7 @@ export default class App extends React.Component {
             format: 'HH:mm',
             showFormat: 'HH:mm',
           } }
-          selectedTimeslots={ [ { 
+          selectedTimeslots = { [ { 
             startDate: moment('2017-05-01T06:00:00.000Z'), 
             endDate: moment('2018-05-01T07:20:00.000Z'),
           } ] }
