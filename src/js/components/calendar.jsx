@@ -14,9 +14,12 @@ export default class Calendar extends React.Component {
     this._updateRenderDays(this.props.renderDays);
 
     this.state = {
-      currentDate: moment(props.initialDate),
+      currentDate: moment(props.currentDate || props.initialDate),
       selectedTimeslots: props.selectedTimeslots || [],
     };
+
+    this._updateCurrentDate = this._updateCurrentDate.bind(this);
+    this._updateSelectedTimeslotsAndCurrentDate = this._updateSelectedTimeslotsAndCurrentDate.bind(this);
   }
 
   render() {
@@ -119,11 +122,35 @@ export default class Calendar extends React.Component {
   }
 
   _onWeekOutOfMonth(updateDate) {
-    this.setState({
-      currentDate: updateDate,
-    });
+    this._updateCurrentDate(updateDate);
 
     return;
+  }
+
+  _updateCurrentDate(currentDate) {
+    const {onChangeCurrentDate} = this.props;
+    if (this.props.currentDate) {
+      onChangeCurrentDate && onChangeCurrentDate(currentDate);
+    } else {
+      this.setState({currentDate}, () => {
+        onChangeCurrentDate && onChangeCurrentDate(currentDate);
+      });
+    }
+  }
+
+  _updateSelectedTimeslotsAndCurrentDate(selectedTimeslots, timeslot) {
+    const {onSelectTimeslot} = this.props;
+    if (this.props.selectedTimeslots) {
+      onSelectTimeslot && onSelectTimeslot(selectedTimeslots, timeslot);
+    } else {
+      this.setState({
+        currentDate: moment(timeslot.startDate),
+        selectedTimeslots,
+      }, () => {
+        // State was set:
+        onSelectTimeslot && onSelectTimeslot(selectedTimeslots, timeslot);
+      });
+    }
   }
 
   _onGoToNextMonth() {
@@ -136,9 +163,7 @@ export default class Calendar extends React.Component {
       .add(1, 'months')
       .startOf('month');
 
-    this.setState({
-      currentDate: nextDate,
-    });
+    this._updateCurrentDate(nextDate);
   }
 
   _onGoToPrevMonth() {
@@ -151,9 +176,7 @@ export default class Calendar extends React.Component {
       .subtract(1, 'months')
       .startOf('month');
 
-    this.setState({
-      currentDate: nextDate,
-    });
+    this._updateCurrentDate(nextDate);
   }
 
   _formatEnabledTimeslots() {
@@ -177,7 +200,6 @@ export default class Calendar extends React.Component {
 
     const {
       maxTimeslots,
-      onSelectTimeslot,
     } = this.props;
 
     const newSelectedTimeslots = selectedTimeslots.slice();
@@ -199,17 +221,7 @@ export default class Calendar extends React.Component {
       newSelectedTimeslots.splice(0, 1);
     }
 
-    if (this.props.selectedTimeslots) {
-      onSelectTimeslot && onSelectTimeslot(newSelectedTimeslots, newTimeslot);
-    } else {
-      this.setState({
-        selectedTimeslots: newSelectedTimeslots,
-        currentDate: moment(newTimeslot.startDate),
-      }, () => {
-        // State was set:
-        onSelectTimeslot && onSelectTimeslot(newSelectedTimeslots, newTimeslot);
-      });
-    }
+    this._updateSelectedTimeslotsAndCurrentDate(newSelectedTimeslots, newTimeslot);
   }
 
   _updateInputProps(startDateInputProps, endDateInputProps) {
@@ -259,8 +271,13 @@ export default class Calendar extends React.Component {
     this._updateInputProps(nextProps.startDateInputProps, nextProps.endDateInputProps);
     this._updateTimeslotProps(nextProps.timeslotProps);
     this._updateRenderDays(nextProps.renderDays);
-    if (this.props.selectedTimeslots !== nextProps.selectedTimeslots) {
-      this.setState({selectedTimeslots: nextProps.selectedTimeslots || []});
+    if ( moment(this.props.currentDate).format() !== moment(nextProps.currentDate).format()
+      || this.props.selectedTimeslots !== nextProps.selectedTimeslots
+    ) {
+      this.setState({
+        currentDate: moment(nextProps.currentDate),
+        selectedTimeslots: nextProps.selectedTimeslots || [],
+      });
     }
   }
 
@@ -301,4 +318,5 @@ Calendar.propTypes = {
   endDateInputProps: PropTypes.object,
   onSelectTimeslot: PropTypes.func,
   renderDisabled: PropTypes.bool,
+  onChangeCurrentDate: PropTypes.func,
 };
