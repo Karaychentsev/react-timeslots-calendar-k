@@ -15,7 +15,7 @@ export default class Calendar extends React.Component {
 
     this.state = {
       currentDate: moment(props.initialDate),
-      selectedTimeslots: [],
+      selectedTimeslots: props.selectedTimeslots || [],
     };
   }
 
