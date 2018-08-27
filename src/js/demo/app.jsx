@@ -54,10 +54,6 @@ export default class App extends React.Component {
               format: 'MMMM Do YYYY, HH:mm:ss',
             },
             {
-              startDate: 'May 1st 2017, 9:00:00',
-              format: 'MMMM Do YYYY, HH:mm:ss',
-            },
-            {
               startDate: 'May 1st 2017, 10:30:00',
               format: 'MMMM Do YYYY, HH:mm:ss',
             },

@@ -50,8 +50,6 @@ export default class Day extends React.Component {
       selectedTimeslots,
       enabledTimeslots,
       momentTime,
-      initialDate,
-      finalDate,
       renderDisabled,
     } = this.props;
 
@@ -75,10 +73,6 @@ export default class Day extends React.Component {
       };
 
       let status = DISABLED;
-      if (timeslotDates.startDate.isBefore(initialDate) || timeslotDates.startDate.isSame(initialDate) || (finalDate && timeslotDates.startDate.isSameOrAfter(finalDate))) {
-        status = DISABLED;
-      }
-
 
       const isSelected = selectedTimeslots.some((selectedTimeslot) => {
         return timeslotDates.startDate.format() === selectedTimeslot.startDate.format();
@@ -97,10 +91,9 @@ export default class Day extends React.Component {
         status = DEFAULT;
       }
 
-      if (isSelected) {
+      if (isSelected && isEnabled) {
         status = SELECTED;
       }
-
 
       return (
         <Timeslot
