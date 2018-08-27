@@ -199,13 +199,17 @@ export default class Calendar extends React.Component {
       newSelectedTimeslots.splice(0, 1);
     }
 
-    this.setState({
-      selectedTimeslots: newSelectedTimeslots,
-      currentDate: moment(newTimeslot.startDate),
-    }, () => {
-      // State was set:
+    if (this.props.selectedTimeslots) {
       onSelectTimeslot && onSelectTimeslot(newSelectedTimeslots, newTimeslot);
-    });
+    } else {
+      this.setState({
+        selectedTimeslots: newSelectedTimeslots,
+        currentDate: moment(newTimeslot.startDate),
+      }, () => {
+        // State was set:
+        onSelectTimeslot && onSelectTimeslot(newSelectedTimeslots, newTimeslot);
+      });
+    }
   }
 
   _updateInputProps(startDateInputProps, endDateInputProps) {
@@ -255,6 +259,9 @@ export default class Calendar extends React.Component {
     this._updateInputProps(nextProps.startDateInputProps, nextProps.endDateInputProps);
     this._updateTimeslotProps(nextProps.timeslotProps);
     this._updateRenderDays(nextProps.renderDays);
+    if (this.props.selectedTimeslots !== nextProps.selectedTimeslots) {
+      this.setState({selectedTimeslots: nextProps.selectedTimeslots});
+    }
   }
 
 }
