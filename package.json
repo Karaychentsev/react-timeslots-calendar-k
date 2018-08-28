@@ -44,6 +44,7 @@
     "jest": "^20.0.4",
     "markdown-loader": "^2.0.0",
     "marked": "^0.3.6",
+    "moment": "^2.22.2",
     "node-sass": "^4.5.3",
     "prop-types": "^15.5.10",
     "react": "^16.4.1",
@@ -57,10 +58,11 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "calendarjs": "^0.1.0",
-    "moment": "^2.22.2"
+    "calendarjs-ru": "^0.4.0"
   },
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "moment": "^2.22.2"
   }
 }

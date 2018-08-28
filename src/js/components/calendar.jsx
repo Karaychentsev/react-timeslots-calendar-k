@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import CalendarJS from 'calendarjs';
+import CalendarJS from 'calendarjs-ru';
 import Month from './month.jsx';
 
 export default class Calendar extends React.Component {
