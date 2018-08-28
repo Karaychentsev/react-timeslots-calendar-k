@@ -135,7 +135,7 @@ Day.defaultProps = {
   timeslotFormat: DEFAULT_TIMESLOT_FORMAT,
   timeslotShowFormat: DEFAULT_TIMESLOT_SHOW_FORMAT,
   renderTitle: (momentTime) => {
-    return momentTime.locale('ru').format('dddd (D)');
+    return momentTime.locale('ru').format('ddd (D)');
   },
 };
 
