@@ -264,7 +264,6 @@ export default class Calendar extends React.Component {
     };
 
     this.renderDays = Object.assign({}, defaultRenderDays, renderDays);
-    console.log('days to render', this.renderDays);
   }
   
 // eslint-disable-next-line

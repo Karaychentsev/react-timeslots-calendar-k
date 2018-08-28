@@ -95,8 +95,6 @@ export default class Day extends React.Component {
         status = SELECTED;
       }
 
-      console.log('status of day', status)
-
       return (
         <Timeslot
           key = { index }
