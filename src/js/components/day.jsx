@@ -95,6 +95,8 @@ export default class Day extends React.Component {
         status = SELECTED;
       }
 
+      console.log('status of day', status)
+
       return (
         <Timeslot
           key = { index }
@@ -135,7 +137,7 @@ Day.defaultProps = {
   timeslotFormat: DEFAULT_TIMESLOT_FORMAT,
   timeslotShowFormat: DEFAULT_TIMESLOT_SHOW_FORMAT,
   renderTitle: (momentTime) => {
-    return momentTime.format('dddd (D)');
+    return momentTime.locale('ru').format('dddd (D)');
   },
 };
 

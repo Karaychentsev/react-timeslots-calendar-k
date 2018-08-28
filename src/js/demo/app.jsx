@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import 'moment/locale/ru'
 
 import '../../styles/demo/main.scss';
 
@@ -50,16 +51,16 @@ export default class App extends React.Component {
           renderDisabled = { false }
           enabledTimeslots = { [
             {
-              startDate: 'April 30th 2017, 9:00:00',
-              format: 'MMMM Do YYYY, HH:mm:ss',
+              startDate: '2017-04-30T09:00:00',
+              format: 'YYYY-MM-DDTHH:mm:ss',
             },
             {
-              startDate: 'May 1st 2017, 10:30:00',
-              format: 'MMMM Do YYYY, HH:mm:ss',
+              startDate: '2017-05-01T10:30:00',
+              format: 'YYYY-MM-DDTHH:mm:ss',
             },
             {
-              startDate: 'May 5th 2017, 9:00:00',
-              format: 'MMMM Do YYYY, HH:mm:ss',
+              startDate: '2017-05-05T10:30:00',
+              format: 'YYYY-MM-DDTHH:mm:ss',
             },
           ] }
           maxTimeslots = { 1 }

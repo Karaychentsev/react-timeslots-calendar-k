@@ -29,7 +29,8 @@ export default class Week extends React.Component {
 
     return weekToRender.map((day, index) => {
       let formattedDate = helpers.getMomentFromCalendarJSDateElement(day);
-      const weekDay = formattedDate.format('dddd').toLowerCase();
+      const weekDay = formattedDate.locale('en').format('dddd').toLowerCase();
+      console.log('weekDay', weekDay)
       if (renderDays[weekDay]){
         return (
           <Day
