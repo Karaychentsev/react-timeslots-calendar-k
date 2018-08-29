@@ -122,19 +122,20 @@ export default class Month extends React.Component {
     } = this.state;
 
     const {
-      onWeekOutOfMonth,
+      onChangeCurrentDate,
       weeks,
     } = this.props;
 
+    let currentDate
     if (currentWeekIndex - 1 >= 0) {
-      this.setState({
-        currentWeekIndex: currentWeekIndex - 1,
-      });
+      currentDate = helpers.getMomentFromCalendarJSDateElement(weeks[currentWeekIndex - 1][0]).clone();
     }
-    else if (onWeekOutOfMonth) {
+    else {
       const firstDayOfPrevWeek = helpers.getMomentFromCalendarJSDateElement(weeks[0][0]).clone().subtract(1, 'days');
-      onWeekOutOfMonth(firstDayOfPrevWeek);
+      currentDate = firstDayOfPrevWeek;
     }
+
+    onChangeCurrentDate(currentDate);
   }
 
   /**
@@ -147,19 +148,20 @@ export default class Month extends React.Component {
 
     const {
       weeks,
-      onWeekOutOfMonth,
+      onChangeCurrentDate,
     } = this.props;
 
+    let currentDate
     if (currentWeekIndex + 1 < weeks.length) {
-      this.setState({
-        currentWeekIndex: currentWeekIndex + 1,
-      });
+      currentDate = helpers.getMomentFromCalendarJSDateElement(weeks[currentWeekIndex + 1][0]).clone();
     }
-    else if (onWeekOutOfMonth) {
+    else {
       const lastDay = weeks[currentWeekIndex].length - 1;
       const firstDayOfNextWeek = helpers.getMomentFromCalendarJSDateElement(weeks[currentWeekIndex][lastDay]).clone().add(1, 'days');
-      onWeekOutOfMonth(firstDayOfNextWeek);
+      currentDate = firstDayOfNextWeek;
     }
+
+    onChangeCurrentDate(currentDate);
   }
 
 // eslint-disable-next-line
@@ -173,7 +175,7 @@ export default class Month extends React.Component {
 /**
 * @type {Object} currentDate: Base currentDate to get the month from - Usually first day of the month
 * @type {Array} weeks: A list of weeks based on calendarJS
-* @type {Function} onWeekOutOfMonth: A callback to call when user goes out of the month
+* @type {Function} onChangeCurrentDate: A callback to call when user goes out of the month
 * @type {Function} onTimeslotClick: Function to be excecuted when clicked.
 * @type {Object} initialDate: Moment JS Date used to initialize the Calendar and which progresses further into the tree.
 * @type {Array} timeslots: An array of timeslots to be displayed in each day.
@@ -185,7 +187,7 @@ export default class Month extends React.Component {
 Month.propTypes = {
   currentDate: PropTypes.object.isRequired,
   weeks: PropTypes.array.isRequired,
-  onWeekOutOfMonth: PropTypes.func,
+  onChangeCurrentDate: PropTypes.func,
   onTimeslotClick: PropTypes.func,
   initialDate: PropTypes.object.isRequired,
   finalDate: PropTypes.object.isRequired,

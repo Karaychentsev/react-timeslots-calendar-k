@@ -76,7 +76,7 @@ export default class Calendar extends React.Component {
         initialDate = { moment(initialDate) }
         finalDate = { moment(finalDate) }
         weeks = { weeks }
-        onWeekOutOfMonth = { this._onWeekOutOfMonth.bind(this) }
+        onChangeCurrentDate = { this._onChangeCurrentDate.bind(this) }
         onTimeslotClick = { this._onTimeslotClick.bind(this) }
         timeslots = { timeslots }
         timeslotProps = { this.timeslotProps }
@@ -121,7 +121,7 @@ export default class Calendar extends React.Component {
     });
   }
 
-  _onWeekOutOfMonth(updateDate) {
+  _onChangeCurrentDate(updateDate) {
     this._updateCurrentDate(updateDate);
 
     return;
