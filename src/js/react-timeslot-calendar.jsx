@@ -21,6 +21,7 @@ export default class ReactTimeslotCalendar extends React.Component {
 
 ReactTimeslotCalendar.defaultProps = {
   timeslots: DEFAULT_TIMESLOTS,
+  disabledButRenderedTimeslots: [],
 };
 
 
@@ -49,4 +50,5 @@ ReactTimeslotCalendar.propTypes = {
   endDateInputProps: PropTypes.object,
   onSelectTimeslot: PropTypes.func,
   renderDisabled: PropTypes.bool,
+  disabledButRenderedTimeslots: PropTypes.array,
 };

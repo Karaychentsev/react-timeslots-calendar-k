@@ -15,6 +15,7 @@ export default class Timeslot extends React.Component {
       status,
       customClassNames,
       renderDisabled,
+      isDisabledButRendered,
     } = this.props;
 
     const timeslotClassNames = classnames({
@@ -23,7 +24,7 @@ export default class Timeslot extends React.Component {
       'tsc-timeslot--disabled': status == DISABLED,
     }, customClassNames);
 
-    if (status !== DISABLED || renderDisabled) {
+    if (status !== DISABLED || isDisabledButRendered || renderDisabled) {
       return (
         <div className = { timeslotClassNames } onClick = { this._onTimeslotClick.bind(this) }>
           { description }
@@ -72,4 +73,5 @@ Timeslot.propTypes = {
     PropTypes.string,
     PropTypes.object,
   ]),
+  isDisabledButRendered: PropTypes.bool,
 };

@@ -25,6 +25,7 @@ export default class Week extends React.Component {
       renderDays,
       currentDate,
       renderDisabled,
+      disabledButRenderedTimeslots,
     } = this.props;
 
     return weekToRender.map((day, index) => {
@@ -44,6 +45,7 @@ export default class Week extends React.Component {
             enabledTimeslots = { enabledTimeslots }
             momentTime = { formattedDate }
             renderDisabled = { renderDisabled }
+            disabledButRenderedTimeslots = { disabledButRenderedTimeslots }
             />
         );
       }
@@ -81,4 +83,5 @@ Week.propTypes = {
   enabledTimeslots: PropTypes.array,
   renderDays: PropTypes.object,
   renderDisabled: PropTypes.bool,
+  disabledButRenderedTimeslots: PropTypes.array,
 };

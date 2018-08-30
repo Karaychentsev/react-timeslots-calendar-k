@@ -86,6 +86,7 @@ export default class Month extends React.Component {
       renderDays,
       currentDate,
       renderDisabled,
+      disabledButRenderedTimeslots,
     } = this.props;
 
     return (
@@ -101,6 +102,7 @@ export default class Month extends React.Component {
         enabledTimeslots = { enabledTimeslots }
         renderDays = { renderDays }
         renderDisabled = { renderDisabled }
+        disabledButRenderedTimeslots = { disabledButRenderedTimeslots }
       />
     );
   }
@@ -126,7 +128,7 @@ export default class Month extends React.Component {
       weeks,
     } = this.props;
 
-    let currentDate
+    let currentDate;
     if (currentWeekIndex - 1 >= 0) {
       currentDate = helpers.getMomentFromCalendarJSDateElement(weeks[currentWeekIndex - 1][0]).clone();
     }
@@ -151,7 +153,7 @@ export default class Month extends React.Component {
       onChangeCurrentDate,
     } = this.props;
 
-    let currentDate
+    let currentDate;
     if (currentWeekIndex + 1 < weeks.length) {
       currentDate = helpers.getMomentFromCalendarJSDateElement(weeks[currentWeekIndex + 1][0]).clone();
     }
@@ -197,4 +199,5 @@ Month.propTypes = {
   enabledTimeslots: PropTypes.array,
   renderDays: PropTypes.object,
   renderDisabled: PropTypes.bool,
+  disabledButRenderedTimeslots: PropTypes.array,
 };

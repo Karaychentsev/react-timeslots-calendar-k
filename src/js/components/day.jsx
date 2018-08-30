@@ -51,6 +51,7 @@ export default class Day extends React.Component {
       enabledTimeslots,
       momentTime,
       renderDisabled,
+      disabledButRenderedTimeslots,
     } = this.props;
 
 
@@ -82,6 +83,9 @@ export default class Day extends React.Component {
       //   return disabledTimeslot.startDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '[)') ||
       //          disabledTimeslot.endDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '(]');
       // });
+      const isDisabledButRendered = disabledButRenderedTimeslots.some((disabledButRenderedTimeslot) => {
+        return timeslotDates.startDate.isSame(disabledButRenderedTimeslot.startDate);
+      });
 
       const isEnabled = enabledTimeslots.some((enabledTimeslot) => {
         return enabledTimeslot.startDate.isSame(timeslotDates.startDate);
@@ -102,6 +106,7 @@ export default class Day extends React.Component {
           onClick = { this._onTimeslotClick.bind(this, index) }
           status = { status }
           renderDisabled = { renderDisabled }
+          isDisabledButRendered = { isDisabledButRendered }
         />
       );
     });
@@ -165,4 +170,5 @@ Day.propTypes = {
   initialDate: PropTypes.object.isRequired,
   finalDate: PropTypes.object.isRequired,
   renderDisabled: PropTypes.bool,
+  disabledButRenderedTimeslots: PropTypes.array,
 };
