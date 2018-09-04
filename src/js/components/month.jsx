@@ -87,6 +87,7 @@ export default class Month extends React.Component {
       currentDate,
       renderDisabled,
       disabledButRenderedTimeslots,
+      renderSlotContent,
     } = this.props;
 
     return (
@@ -103,6 +104,7 @@ export default class Month extends React.Component {
         renderDays = { renderDays }
         renderDisabled = { renderDisabled }
         disabledButRenderedTimeslots = { disabledButRenderedTimeslots }
+        renderSlotContent = { renderSlotContent }
       />
     );
   }
@@ -200,4 +202,5 @@ Month.propTypes = {
   renderDays: PropTypes.object,
   renderDisabled: PropTypes.bool,
   disabledButRenderedTimeslots: PropTypes.array,
+  renderSlotContent: PropTypes.func,
 };

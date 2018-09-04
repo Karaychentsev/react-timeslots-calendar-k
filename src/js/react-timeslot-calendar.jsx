@@ -7,6 +7,9 @@ import {
   DEFAULT_TIMESLOTS,
 } from './constants/day.js';
 
+import * as TIMESLOT from './constants/timeslot';
+
+export {TIMESLOT};
 
 export default class ReactTimeslotCalendar extends React.Component {
 
@@ -51,4 +54,5 @@ ReactTimeslotCalendar.propTypes = {
   onSelectTimeslot: PropTypes.func,
   renderDisabled: PropTypes.bool,
   disabledButRenderedTimeslots: PropTypes.array,
+  renderSlotContent: PropTypes.func,
 };

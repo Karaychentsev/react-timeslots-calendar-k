@@ -45,6 +45,7 @@ export default class Day extends React.Component {
 
   _renderTimeSlots() {
     const {
+      renderSlotContent,
       timeslots,
       timeslotProps,
       selectedTimeslots,
@@ -56,13 +57,7 @@ export default class Day extends React.Component {
 
 
     return timeslots.map((slot, index) => {
-      let description = '';
-      for (let i = 0; i < slot.length; i ++){
-        description += moment(slot[i], timeslotProps.format).format(timeslotProps.showFormat);
-        if (i < (slot.length - 1)){
-          description += ' - ';
-        }
-      }
+
       // let timeslotDates = {
       //   startDate: momentTime.clone().add(slot[0], timeslotProps.format),
       //   endDate: momentTime.clone().add(slot[slot.length - 1], timeslotProps.format),
@@ -99,10 +94,13 @@ export default class Day extends React.Component {
         status = SELECTED;
       }
 
+      const content = renderSlotContent({slot, index, timeslotProps, status});
+
       return (
         <Timeslot
           key = { index }
-          description = { description }
+          content = { content }
+          renderSlotContent = { renderSlotContent }
           onClick = { this._onTimeslotClick.bind(this, index) }
           status = { status }
           renderDisabled = { renderDisabled }
@@ -139,6 +137,16 @@ export default class Day extends React.Component {
 Day.defaultProps = {
   timeslotFormat: DEFAULT_TIMESLOT_FORMAT,
   timeslotShowFormat: DEFAULT_TIMESLOT_SHOW_FORMAT,
+  renderSlotContent: ({slot, timeslotProps}) => {
+    let content = '';
+    for (let i = 0; i < slot.length; i ++){
+      content += moment(slot[i], timeslotProps.format).format(timeslotProps.showFormat);
+      if (i < (slot.length - 1)){
+        content += ' - ';
+      }
+    }
+    return content;
+  },
   renderTitle: (momentTime) => {
     return momentTime.locale('ru').format('ddd (D)');
   },
@@ -158,6 +166,7 @@ Day.defaultProps = {
  */
 Day.propTypes = {
   currentDate: PropTypes.object,
+  renderSlotContent: PropTypes.func,
   timeslots: PropTypes.array.isRequired,
   timeslotProps: PropTypes.object,
   selectedTimeslots: PropTypes.array,

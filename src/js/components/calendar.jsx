@@ -66,6 +66,7 @@ export default class Calendar extends React.Component {
       finalDate,
       renderDisabled,
       disabledButRenderedTimeslots,
+      renderSlotContent,
     } = this.props;
 
     const cal = new CalendarJS(currentDate.year(), currentDate.month() + 1);
@@ -86,6 +87,7 @@ export default class Calendar extends React.Component {
         renderDays = { this.renderDays }
         renderDisabled = { renderDisabled }
         disabledButRenderedTimeslots = { disabledButRenderedTimeslots }
+        renderSlotContent = { renderSlotContent }
       />
     );
   }
@@ -322,4 +324,5 @@ Calendar.propTypes = {
   renderDisabled: PropTypes.bool,
   onChangeCurrentDate: PropTypes.func,
   disabledButRenderedTimeslots: PropTypes.array,
+  renderSlotContent: PropTypes.func,
 };

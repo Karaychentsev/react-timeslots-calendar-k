@@ -11,7 +11,7 @@ import {
 export default class Timeslot extends React.Component {
   render() {
     const {
-      description,
+      content,
       status,
       customClassNames,
       renderDisabled,
@@ -27,7 +27,7 @@ export default class Timeslot extends React.Component {
     if (status !== DISABLED || isDisabledButRendered || renderDisabled) {
       return (
         <div className = { timeslotClassNames } onClick = { this._onTimeslotClick.bind(this) }>
-          { description }
+          { content }
         </div>
       );
     }
@@ -56,13 +56,13 @@ Timeslot.defaultProps = {
 };
 
 /**
- * @type {String} description: The contents to be displayed by the timeslot. Default format will resume to something similar to "7:00 PM - 8:00 PM"
+ * @type {String} content: The contents to be displayed by the timeslot. Default format will resume to something similar to "7:00 PM - 8:00 PM"
  * @type {String} status: allows the div to change format based on the current status of the element (disabled, selected, default)
  * @type (Function) onClick: Function to be excecuted when clicked.
  */
 Timeslot.propTypes = {
   renderDisabled: PropTypes.bool,
-  description: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   status: PropTypes.oneOf([
     DEFAULT,
     SELECTED,
