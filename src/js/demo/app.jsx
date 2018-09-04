@@ -27,6 +27,23 @@ export default class App extends React.Component {
     );
   }
 
+  renderSlotContent({slot, timeslotProps}) {
+    let content = ''
+    for (let i = 0; i < slot.length; i ++){
+      content += moment(slot[i], timeslotProps.format).format(timeslotProps.showFormat)
+      if (i < (slot.length - 1)){
+        content += ' - '
+      }
+    }
+    return (
+      <div>
+        <div>
+          {content}
+        </div>
+      </div>
+    );
+  }
+
   _customTimeslotSnippetRender() {
     return (
       <div>
@@ -36,8 +53,8 @@ export default class App extends React.Component {
           initialDate = { this.initialDate.format() }
           finalDate = { this.finalDate.format() }
           timeslots = { [
-            ['09:00', '10:20'],
-            ['10:30', '11:40'],
+            ['09:00'],
+            ['10:30'],
             ['18:23'],
           ] }
           timeslotProps = { {
@@ -69,6 +86,7 @@ export default class App extends React.Component {
               format: 'YYYY-MM-DDTHH:mm:ss',
             },
           ] }
+          renderSlotContent = {this.renderSlotContent}
           maxTimeslots = { 1 }
           onSelectTimeslot = { (timeslots, lastSelected) => {
             console.log('All Timeslots:');
