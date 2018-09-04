@@ -94,7 +94,8 @@ export default class Day extends React.Component {
         status = SELECTED;
       }
 
-      const content = renderSlotContent({slot, index, timeslotProps, status});
+      const timeslotDate = timeslotDates.startDate.format();
+      const content = renderSlotContent({slot, index, timeslotProps, status, timeslotDate});
 
       return (
         <Timeslot

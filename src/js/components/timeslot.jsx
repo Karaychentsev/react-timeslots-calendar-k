@@ -33,7 +33,7 @@ export default class Timeslot extends React.Component {
     }
     else {
       return (
-        <Fragment / >
+        <Fragment/>
       );
     }
   }
@@ -62,7 +62,10 @@ Timeslot.defaultProps = {
  */
 Timeslot.propTypes = {
   renderDisabled: PropTypes.bool,
-  content: PropTypes.string.isRequired,
+  content: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]),
   status: PropTypes.oneOf([
     DEFAULT,
     SELECTED,

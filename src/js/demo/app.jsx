@@ -27,7 +27,7 @@ export default class App extends React.Component {
     );
   }
 
-  renderSlotContent({slot, timeslotProps}) {
+  renderSlotContent({slot, timeslotProps, timeslotDate}) {
     let content = ''
     for (let i = 0; i < slot.length; i ++){
       content += moment(slot[i], timeslotProps.format).format(timeslotProps.showFormat)
@@ -35,6 +35,7 @@ export default class App extends React.Component {
         content += ' - '
       }
     }
+    console.log('hi',timeslotDate)
     return (
       <div>
         <div>
