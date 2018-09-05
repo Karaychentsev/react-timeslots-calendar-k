@@ -127,7 +127,7 @@ export default class Day extends React.Component {
     const timeslot = {
       currentShowingDate: currentDate,
       startDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(timeslots[index][0], timeslotProps.format).format('HH:mm:ss')}`),
-      endDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(timeslots[index][1], timeslotProps.format).format('HH:mm:ss')}`),
+      endDate: moment(`${momentTime.clone().format('YYYY-MM-DD')}T${moment(timeslots[index][timeslots[index].length - 1], timeslotProps.format).format('HH:mm:ss')}`),
     };
     
 
